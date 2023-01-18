@@ -43,7 +43,7 @@ function checkWinner(){
     let r=width*0.05;
     let x = mouseX;
     let y = mouseY;
-    let cx = width*0.9;
+    let cx = width*0.1;
     let cy = height*0.1;
     ellipseMode(CENTER);
     fill(200,90);
