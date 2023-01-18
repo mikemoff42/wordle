@@ -35,7 +35,7 @@ class Key{
     let ymin = this.pos.y - this.yspa/2;
     let ymax = this.pos.y + this.yspa/2;
     
-    if (x > xmin && x < xmax && y > ymin && y < ymax){
+    if (x > xmin && x < xmax && y > ymin && y < ymax && !(winner || level > 5)){
       this.highlight = true;
       fill(60,100);
       square(this.pos.x,this.pos.y,this.xspa-2);
@@ -66,7 +66,7 @@ function enterBackspace(){
   let xmax = xOff+xSpac;
   let ymin = yOff;
   let ymax = yOff + ySpac;
-  if (x > xmin && x < xmax && y > ymin && y < ymax){
+  if (x > xmin && x < xmax && y > ymin && y < ymax && !(winner || level > 5)){
     fill(60,100);
     rect(xOff,yOff,xSpac-2,ySpac-2);
     entHighlight=true;
@@ -89,7 +89,7 @@ function enterBackspace(){
   xmax = xOff+xSpac;
   ymin = yOff;
   ymax = yOff + ySpac;
-  if (x > xmin && x < xmax && y > ymin && y < ymax){
+  if (x > xmin && x < xmax && y > ymin && y < ymax && !(winner || level > 5)){
     fill(60,100);
     rect(xOff,yOff,xSpac-2,ySpac-2);
     backHighlight=true;
