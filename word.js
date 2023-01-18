@@ -65,7 +65,7 @@ class Word{
       fill(this.colors[i]);
       square(i*xspacing+xoff,yoffset,xspacing-5);
       fill(0);
-      text(this.value.charAt(i),i*xspacing+xoff,yoffset);
+      text(this.value.charAt(i),i*xspacing+xoff-1,yoffset+2);
     }
     pop();
   }
