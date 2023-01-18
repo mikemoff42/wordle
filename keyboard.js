@@ -4,7 +4,7 @@ let colorKeys=[];
 function KeyBoard(){
   let rowCount=1;
   let counter =0;
-  let clr = [220,100];
+  let clr = [250,190];
   for (let i=0;i<letters.length;i++){
     if (i==10){
       rowCount++;
