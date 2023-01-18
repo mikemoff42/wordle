@@ -154,7 +154,7 @@ function mousePressed(){
     newGame();
   }
   for (let k of allKeys){
-    if (k.highlight){
+    if (k.highlight && !(winner || level > 5)){
       currentword+=k.letter;
     }
   }
@@ -163,7 +163,7 @@ function mousePressed(){
     level++;
     currentword='';
   }
-  if (backHighlight && currentword.length>0){
+  if (backHighlight && currentword.length>0 && !(winner || level > 5)){
     currentword = currentword.substring(0, currentword.length - 1);
   }
 }
