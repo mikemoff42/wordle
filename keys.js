@@ -1,6 +1,51 @@
 let entHighlight;
 let backHighlight;
 
+class Key{
+  constructor(x,letter,row,color){
+    this.xspa = width*0.05;
+    this.yspa = this.xspa;
+    this.xoffs = width*0.275;
+    this.yoffs = 6*yspacing+(height*0.15) + this.yspa/2;
+    this.color = color;
+    this.letter = letter;
+    this.highlight = false;
+    
+    if (row == 2){
+      this.yoffs+=this.xspa;
+      this.xoffs+=this.xspa/2;
+    } else if (row == 3){
+      this.yoffs+=this.xspa*2;
+      this.xoffs+=this.xspa+this.xspa/2;
+    }
+    this.pos = createVector(this.xoffs + (x*this.xspa),this.yoffs);
+  }
+  
+  show(){
+    push();
+    textSize(width/30);
+    fill(this.color);
+    square(this.pos.x,this.pos.y,this.xspa);
+    fill(0);
+    text(this.letter,this.pos.x,this.pos.y);
+    let x = mouseX;
+    let y = mouseY;
+    let xmin = this.pos.x - this.xspa/2;
+    let xmax = this.pos.x + this.xspa/2;
+    let ymin = this.pos.y - this.yspa/2;
+    let ymax = this.pos.y + this.yspa/2;
+    
+    if (x > xmin && x < xmax && y > ymin && y < ymax){
+      this.highlight = true;
+      fill(60,100);
+      square(this.pos.x,this.pos.y,this.xspa);
+    } else {
+      this.highlight = false;
+    }
+    pop();
+  }
+}
+
 function enterBackspace(){
   let x = mouseX;
   let y = mouseY;
@@ -52,54 +97,4 @@ function enterBackspace(){
     backHighlight=false;
   
   pop();
-}
-
-class Key{
-  constructor(x,letter,row,color){
-    this.xspa = width*0.05;
-    this.yspa = this.xspa;
-    this.xoffs = width*0.275;
-    this.yoffs = 6*yspacing+(height*0.15) + this.yspa/2;
-    this.color = color;
-    this.letter = letter;
-    this.highlight = false;
-    
-    if (row == 2){
-      this.yoffs+=this.xspa;
-      this.xoffs+=this.xspa/2;
-    } else if (row == 3){
-      this.yoffs+=this.xspa*2;
-      this.xoffs+=this.xspa+this.xspa/2;
-    }
-    this.pos = createVector(this.xoffs + (x*this.xspa),this.yoffs);
-  }
-  
-  show(){
-    push();
-    textSize(width/30);
-    fill(this.color);
-    square(this.pos.x,this.pos.y,this.xspa);
-    fill(0);
-    text(this.letter,this.pos.x,this.pos.y);
-    
-        
-    let x = mouseX;
-    let y = mouseY;
-    let xmin = this.pos.x - this.xspa/2;
-    let xmax = this.pos.x + this.xspa/2;
-    let ymin = this.pos.y - this.yspa/2;
-    let ymax = this.pos.y + this.yspa/2;
-    
-    if (x > xmin && x < xmax && y > ymin && y < ymax){
-      this.highlight = true;
-      fill(60,100);
-      square(this.pos.x,this.pos.y,this.xspa);
-    } else {
-      this.highlight = false;
-    }
-    
-    
-    
-    pop();
-  }
 }
