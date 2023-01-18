@@ -75,10 +75,10 @@ function drawSquares(){
   for (let i=0;i<6;i++)
     for (let j=0;j<5;j++){
       //getFill(i+j*3);
-      stroke(200,80);
+      //stroke(200,80);
       //fill(200,80);
-      fill(220,90);
-      square(j*xspacing+xoff,i*yspacing+yoff,xspacing,10);
+      fill(250,190);
+      square(j*xspacing+xoff,i*yspacing+yoff,xspacing-5);
       push();
       if(level==i && currentword){
         fill(0);
@@ -169,5 +169,8 @@ function keyPressed(){
     currentword+=key;
   } else if (keyCode == BACKSPACE)
     currentword = currentword.substring(0, currentword.length - 1);
+  
+}
+function checkWord(){
   
 }
