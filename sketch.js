@@ -16,7 +16,7 @@ let wordIndex;
 let freePlay;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight);
   date = new Date();
   wordIndex = ((date.getMonth()+1) * date.getDate())*(date.getFullYear()-2022);
   newGame();  
