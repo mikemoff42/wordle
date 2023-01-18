@@ -6,7 +6,7 @@ let asort;
 let currentword='';
 let notWord=false;
 let notWordTimer;
-let xspacing,xoff,yspacing;
+let xspacing,xoff,yoff,yspacing;
 let winner;
 let newGameHighlight;
 let checkCurrentWord;
@@ -14,11 +14,12 @@ let checkCurrentWord;
 let date;
 let wordIndex;
 let freePlay;
+let redword;
 
 function setup() {
   createCanvas(windowHeight, windowHeight);
   date = new Date();
-  wordIndex = ((date.getMonth()+1) * date.getDate())*(date.getFullYear()-2022);
+  wordIndex = ((date.getMonth())*31 + date.getDate())+(date.getFullYear()-2023)*366;
   newGame();  
 }
 function draw() {
@@ -62,7 +63,6 @@ function checkWinner(){
   
   pop();
 }
-let redword;
 function drawSquares(){
   currentword=currentword.toUpperCase();
   
@@ -101,7 +101,7 @@ function newGame(){
   answerText=ans;
   gameover=false;
   winner=false;
-  KeyBoard();
+  
   level=0;
   words=[];
   currentword='';
@@ -109,6 +109,7 @@ function newGame(){
   yspacing=xspacing;
   xoff=width*0.3;
   yoff=height*0.15;
+  KeyBoard();
   textSize(xspacing*0.9);
   
   rectMode(CENTER);
@@ -141,6 +142,19 @@ function mousePressed(){
     freePlay=true;
     newGame();
   }
+  for (let k of allKeys){
+    if (k.highlight){
+      currentword+=k.letter;
+    }
+  }
+  if (entHighlight && !(winner || level > 5) && WORDS.indexOf(currentword.toLowerCase()) != -1 && currentword.length == 5){
+    words[level] = new Word();
+    level++;
+    currentword='';
+  }
+  if (backHighlight && currentword.length>0){
+    currentword = currentword.substring(0, currentword.length - 1);
+  }
 }
 function keyPressed(){
   if (winner || level > 5){
@@ -155,8 +169,5 @@ function keyPressed(){
     currentword+=key;
   } else if (keyCode == BACKSPACE)
     currentword = currentword.substring(0, currentword.length - 1);
-  
-}
-function checkWord(){
   
 }
