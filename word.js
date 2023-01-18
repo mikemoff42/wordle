@@ -25,8 +25,8 @@ class Word{
         this.tmparr[i] = ' ';
         this.tmpans[i] = '.';
         for (let j=0;j<allKeys.length;j++){
-          if (answer[i] == allKeys[j])
-            colorKeys[j] = Green;
+          if (answer[i] == allKeys[j].letter)
+            allKeys[j].color = Green;
         }
       }
     }
@@ -44,15 +44,15 @@ class Word{
         this.colors[index] = Yellow;
         this.tmparr[index] = ' ';
         for (let j=0;j<allKeys.length;j++){
-          if (answer[i] == allKeys[j])
-            colorKeys[j] = Yellow;
+          if (answer[i] == allKeys[j].letter)
+            allKeys[j].color = Yellow;
         }
       }
     }
     for (let i=0;i<5;i++){
       for (let j=0;j<allKeys.length;j++){
-        if (this.tmparr[i]==allKeys[j]){
-          colorKeys[j]=100;
+        if (this.tmparr[i]==allKeys[j].letter){
+          allKeys[j].color=60;
         }
       }
     }
