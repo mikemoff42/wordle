@@ -28,6 +28,15 @@ function draw() {
   drawSquares();
   notAWord();
   checkWinner();
+  if (!freePlay && level < 6 && !winner){
+    let m = date.getMonth()+1;
+    let d = date.getDate();
+    let y = date.getFullYear()-2000;
+    let today = m+'/'+d+'/'+y;
+    textSize(width/30);
+    text('Daily Puzzle for '+today,width/2,height*0.05);
+    textSize(xspacing*0.9);
+  }
   
 }
 function checkWinner(){
@@ -128,12 +137,14 @@ function notAWord(){
   }
   if (notWordTimer > 0){
     textSize(width/30);
-    text('Not a Word',width/2,height*0.05);
+    fill(255,0,0);
+    text('*Invalid word',width/2,height*0.09);
   }
   if (frameCount % 60 == 0 && notWordTimer >0){
     notWordTimer--;
   }
   textSize(xspacing*0.9);
+  fill(255);
 }
 
 function mousePressed(){
@@ -169,8 +180,4 @@ function keyPressed(){
     currentword+=key;
   } else if (keyCode == BACKSPACE)
     currentword = currentword.substring(0, currentword.length - 1);
-  
-}
-function checkWord(){
-  
 }
