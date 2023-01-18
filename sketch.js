@@ -92,7 +92,7 @@ function drawSquares(){
       if(level==i && currentword){
         fill(0);
         if (redword) fill(255,0,0);
-        text(currentword.charAt(j),j*xspacing+xoff,i*yspacing+yoff);
+        text(currentword.charAt(j),j*xspacing+xoff-1,i*yspacing+yoff+2);
       }
       pop();
     }
