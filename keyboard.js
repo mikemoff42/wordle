@@ -11,7 +11,8 @@ function showKeys(){
   let xspa = width*0.05;
   let yspa = xspa;
   let xoffs = width*0.275;
-  let yoffs = height *0.8;
+  let yoffs = 6*yspacing+yoff + yspa/2;
+  //height *0.8;
   push();
   textSize(width/30);
   let counter =0;
