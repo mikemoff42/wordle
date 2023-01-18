@@ -25,7 +25,7 @@ class Key{
     push();
     textSize(width/30);
     fill(this.color);
-    square(this.pos.x,this.pos.y,this.xspa);
+    square(this.pos.x,this.pos.y,this.xspa-2);
     fill(0);
     text(this.letter,this.pos.x,this.pos.y);
     let x = mouseX;
@@ -38,7 +38,7 @@ class Key{
     if (x > xmin && x < xmax && y > ymin && y < ymax){
       this.highlight = true;
       fill(60,100);
-      square(this.pos.x,this.pos.y,this.xspa);
+      square(this.pos.x,this.pos.y,this.xspa-2);
     } else {
       this.highlight = false;
     }
@@ -56,7 +56,7 @@ function enterBackspace(){
   push();
   fill(220,100);
   rectMode(CORNER);
-  rect(xOff,yOff,xSpac,ySpac);
+  rect(xOff,yOff,xSpac-2,ySpac-2);
   textSize(width/40);
   textAlign(LEFT,BOTTOM);
   noStroke();
@@ -68,7 +68,7 @@ function enterBackspace(){
   let ymax = yOff + ySpac;
   if (x > xmin && x < xmax && y > ymin && y < ymax){
     fill(60,100);
-    rect(xOff,yOff,xSpac,ySpac);
+    rect(xOff,yOff,xSpac-2,ySpac-2);
     entHighlight=true;
   } else
     entHighlight=false;
@@ -79,7 +79,7 @@ function enterBackspace(){
   ySpac = width*0.05;
   rectMode(CORNER);
   fill(220,100);
-  rect(xOff,yOff,xSpac,ySpac);
+  rect(xOff+2,yOff+2,xSpac-4,ySpac-4);
   textSize(width/40);
   textAlign(LEFT,BOTTOM);
   noStroke();
@@ -91,7 +91,7 @@ function enterBackspace(){
   ymax = yOff + ySpac;
   if (x > xmin && x < xmax && y > ymin && y < ymax){
     fill(60,100);
-    rect(xOff,yOff,xSpac,ySpac);
+    rect(xOff,yOff,xSpac-2,ySpac-2);
     backHighlight=true;
   } else
     backHighlight=false;
