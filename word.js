@@ -52,7 +52,7 @@ class Word{
     for (let i=0;i<5;i++){
       for (let j=0;j<allKeys.length;j++){
         if (this.tmparr[i]==allKeys[j].letter){
-          allKeys[j].color=60;
+          allKeys[j].color=90;
         }
       }
     }
@@ -63,7 +63,7 @@ class Word{
     push();
     for (let i=0;i<5;i++){
       fill(this.colors[i]);
-      square(i*xspacing+xoff,yoffset,xspacing,10);
+      square(i*xspacing+xoff,yoffset,xspacing-5);
       fill(0);
       text(this.value.charAt(i),i*xspacing+xoff,yoffset);
     }
