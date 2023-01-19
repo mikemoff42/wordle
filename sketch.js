@@ -2,7 +2,6 @@ let words=[];
 let level=0;
 let answerText;
 let answer=[];
-let asort;
 let currentword='';
 let notWord=false;
 let notWordTimer;
