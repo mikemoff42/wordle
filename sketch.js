@@ -2,6 +2,7 @@ let words=[];
 let level=0;
 let answerText;
 let answer=[];
+let asort;
 let currentword='';
 let notWord=false;
 let notWordTimer;
@@ -14,6 +15,10 @@ let date;
 let wordIndex;
 let freePlay;
 let redword;
+
+document.ontouchmove = function(event) {
+    event.preventDefault();
+};
 
 function setup() {
   createCanvas(windowHeight, windowHeight);
@@ -156,6 +161,7 @@ function mousePressed(){
     if (k.highlight && !(winner || level > 5)){
       currentword+=k.letter;
     }
+    k.highlight = false;
   }
   if (entHighlight && !(winner || level > 5) && WORDS.indexOf(currentword.toLowerCase()) != -1 && currentword.length == 5){
     words[level] = new Word();
@@ -164,6 +170,7 @@ function mousePressed(){
   }
   if (backHighlight && currentword.length>0 && !(winner || level > 5)){
     currentword = currentword.substring(0, currentword.length - 1);
+    backHighlight=false;
   }
 }
 function keyPressed(){
