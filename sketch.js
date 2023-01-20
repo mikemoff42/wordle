@@ -16,15 +16,17 @@ let wordIndex;
 let freePlay;
 let redword;
 
-document.ontouchmove = function(event) {
-    event.preventDefault();
-};
 
 function setup() {
   createCanvas(windowHeight, windowHeight);
   date = new Date();
   wordIndex = ((date.getMonth())*31 + date.getDate())+(date.getFullYear()-2023)*366;
   newGame();  
+  
+  
+  for (let element of document.getElementsByClassName("p5Canvas")) {
+    element.addEventListener("contextmenu", (e) => e.preventDefault());
+  }
 }
 function draw() {
   background(0,90);
@@ -149,6 +151,14 @@ function notAWord(){
   }
   textSize(xspacing*0.9);
   fill(255);
+}
+function touchStarted(){
+  mousePressed();
+
+}
+function touchEnded(){
+  mouseX=0;
+  mouseY=0;
 }
 
 function mousePressed(){
