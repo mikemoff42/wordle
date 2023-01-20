@@ -29,7 +29,7 @@ function setup() {
   }
 }
 function draw() {
-  background(0,90);
+  background(220,90);
   showKeys();
   drawSquares();
   notAWord();
