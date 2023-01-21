@@ -152,15 +152,6 @@ function notAWord(){
   textSize(xspacing*0.9);
   fill(255);
 }
-function touchStarted(){
-  mousePressed();
-
-}
-function touchEnded(){
-  mouseX=0;
-  mouseY=0;
-}
-
 function mousePressed(){
   if (newGameHighlight){
     newGameHighlight=false;
