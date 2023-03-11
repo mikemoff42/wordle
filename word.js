@@ -51,7 +51,7 @@ class Word{
     }
     for (let i=0;i<5;i++){
       for (let j=0;j<allKeys.length;j++){
-        if (this.tmparr[i]==allKeys[j].letter){
+        if (this.tmparr[i]==allKeys[j].letter && allKeys[j].color != Green && allKeys[j].color != Yellow){
           allKeys[j].color=90;
         }
       }
