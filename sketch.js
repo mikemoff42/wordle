@@ -175,7 +175,10 @@ function mousePressed(){
   }
 }
 function keyPressed(){
-  if (winner || level > 5){
+  if ((winner || level > 5) && keyCode == 13){
+    freePlay=true;
+    newGame();
+  } else if (winner || level > 5){
     //game over
   } else if (keyCode == 13 && WORDS.indexOf(currentword.toLowerCase()) == -1) {
     notWord = true;
@@ -183,8 +186,9 @@ function keyPressed(){
     words[level] = new Word();
     level++;
     currentword='';
-  } else if (keyCode != BACKSPACE && keyCode > 64 && keyCode < 91){
-    currentword+=key;
-  } else if (keyCode == BACKSPACE)
+  } else if (keyCode == BACKSPACE) {
     currentword = currentword.substring(0, currentword.length - 1);
+  } else if (keyCode > 64 && keyCode < 91){
+    currentword+=key;
+  }
 }
