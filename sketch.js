@@ -178,6 +178,9 @@ function keyPressed(){
   if ((winner || level > 5) && keyCode == 13){
     freePlay=true;
     newGame();
+  } else if ((winner || level > 5) && key == 'd'){
+    freePlay=false;
+    newGame();
   } else if (winner || level > 5){
     //game over
   } else if (keyCode == 13 && WORDS.indexOf(currentword.toLowerCase()) == -1) {
