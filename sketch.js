@@ -107,11 +107,20 @@ function drawSquares(){
     words[i].show();
   }
 }
+function genNewWord(){
+  let ans = random(WORDS);
+  if (ans.charAt(4) == 's' && random() > 0.01){
+    while (ans.charAt(4) == 's'){
+      ans = random(WORDS);
+    }
+  }
+  return ans;
+}
 function newGame(){
   let ans;
-  if (freePlay)
-    ans = random(WORDS);
-  else
+  if (freePlay) {
+    ans = genNewWord();
+  }
     ans = WORDS[wordIndex];
   answerText=ans;
   gameover=false;
