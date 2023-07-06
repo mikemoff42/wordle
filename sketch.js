@@ -120,7 +120,8 @@ function newGame(){
   let ans;
   if (freePlay) {
     ans = genNewWord();
-  }
+  } 
+  else
     ans = WORDS[wordIndex];
   answerText=ans;
   gameover=false;
