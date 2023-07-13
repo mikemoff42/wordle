@@ -43,7 +43,7 @@ function draw() {
     textSize(width/30);
     text('Daily Puzzle for '+today,width/2,height*0.05);
     textSize(xspacing*0.9);
-  } else if (!winner){
+  } else if (!winner && level < 6){
     textSize(width/30);
     text('Wordle Free Play',width/2,height*0.05);
     textSize(xspacing*0.9);
