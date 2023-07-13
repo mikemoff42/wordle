@@ -153,7 +153,7 @@ function notAWord(){
   if (notWordTimer > 0){
     textSize(width/30);
     fill(255,0,0);
-    text('*Nope*',width/2,height*0.09);
+    text('*Nope*',width/2,height*0.0825);
   }
   if (frameCount % 60 == 0 && notWordTimer >0){
     notWordTimer--;
