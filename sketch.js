@@ -21,6 +21,7 @@ function setup() {
   createCanvas(windowHeight, windowHeight);
   date = new Date();
   wordIndex = ((date.getMonth())*31 + date.getDate())+(date.getFullYear()-2023)*366;
+  // wordIndex=0;
   newGame();  
   
   
@@ -41,6 +42,10 @@ function draw() {
     let today = m+'/'+d+'/'+y;
     textSize(width/30);
     text('Daily Puzzle for '+today,width/2,height*0.05);
+    textSize(xspacing*0.9);
+  } else if (!winner){
+    textSize(width/30);
+    text('Wordle Free Play',width/2,height*0.05);
     textSize(xspacing*0.9);
   }
   
@@ -79,25 +84,18 @@ function checkWinner(){
   pop();
 }
 function drawSquares(){
-  currentword=currentword.toUpperCase();
-  
-  redword=false;
-  if (currentword.length == 5){
-    redword=(WORDS.indexOf(currentword.toLowerCase()) == -1)
-  }
-  
+  currentword=currentword.toUpperCase();  
   if (currentword.length > 5) currentword = currentword.substring(0, 5);
   for (let i=0;i<6;i++)
     for (let j=0;j<5;j++){
-      //getFill(i+j*3);
-      //stroke(200,80);
-      //fill(200,80);
       fill(250,190);
       square(j*xspacing+xoff,i*yspacing+yoff,xspacing-5);
       push();
       if(level==i && currentword){
-        fill(0);
-        if (redword) fill(255,0,0);
+        if (currentword.length == 5 && WORDS.indexOf(currentword.toLowerCase()) == -1) 
+          fill(255,0,0);
+        else
+          fill(0);
         text(currentword.charAt(j),j*xspacing+xoff-1,i*yspacing+yoff+2);
       }
       pop();
@@ -110,6 +108,7 @@ function drawSquares(){
 function genNewWord(){
   let ans = random(WORDS);
   if (ans.charAt(4) == 's' && random() > 0.01){
+    //console.log(ans);
     while (ans.charAt(4) == 's'){
       ans = random(WORDS);
     }
@@ -120,7 +119,7 @@ function newGame(){
   let ans;
   if (freePlay) {
     ans = genNewWord();
-  } 
+  }
   else
     ans = WORDS[wordIndex];
   answerText=ans;
@@ -154,7 +153,7 @@ function notAWord(){
   if (notWordTimer > 0){
     textSize(width/30);
     fill(255,0,0);
-    text('*Invalid word',width/2,height*0.09);
+    text('*Nope*',width/2,height*0.09);
   }
   if (frameCount % 60 == 0 && notWordTimer >0){
     notWordTimer--;
