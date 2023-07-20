@@ -149,6 +149,7 @@ function notAWord(){
   if (notWord){
     notWordTimer=2;
     notWord=false;
+    currentword='';
   }
   if (notWordTimer > 0){
     textSize(width/30);
