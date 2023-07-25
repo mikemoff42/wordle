@@ -15,13 +15,14 @@ let date;
 let wordIndex;
 let freePlay;
 let redword;
+let daily;
 
 
 function setup() {
   createCanvas(windowHeight, windowHeight);
+  daily = true;
   date = new Date();
   wordIndex = ((date.getMonth())*31 + date.getDate())+(date.getFullYear()-2023)*366;
-  // wordIndex=0;
   newGame();  
   
   
@@ -33,7 +34,6 @@ function draw() {
   background(0,90);
   showKeys();
   drawSquares();
-  notAWord();
   checkWinner();
   if (!freePlay && level < 6 && !winner){
     let m = date.getMonth()+1;
@@ -60,12 +60,13 @@ function checkWinner(){
     text('Game Over: '+answerText.toUpperCase(),width/2,height*0.05);
     
   }
-  if (winner || level > 5){
+  if (winner || level > 5 || daily){
     let r=width*0.05;
     let x = mouseX;
     let y = mouseY;
     let cx = width*0.1;
     let cy = height*0.1;
+    textSize(width/30);
     ellipseMode(CENTER);
     fill(200,90);
     circle(cx,cy,r*2);
@@ -108,7 +109,6 @@ function drawSquares(){
 function genNewWord(){
   let ans = random(WORDS);
   if (ans.charAt(4) == 's' && random() > 0.01){
-    //console.log(ans);
     while (ans.charAt(4) == 's'){
       ans = random(WORDS);
     }
@@ -145,28 +145,12 @@ function newGame(){
     answer[i] = ans.charAt(i).toUpperCase();
   }
 }
-function notAWord(){
-  if (notWord){
-    notWordTimer=2;
-    notWord=false;
-    currentword='';
-  }
-  if (notWordTimer > 0){
-    textSize(width/30);
-    fill(255,0,0);
-    text('*Nope*',width/2,height*0.0825);
-  }
-  if (frameCount % 60 == 0 && notWordTimer >0){
-    notWordTimer--;
-  }
-  textSize(xspacing*0.9);
-  fill(255);
-}
 function mousePressed(){
   if (newGameHighlight){
     newGameHighlight=false;
     freePlay=true;
     newGame();
+    daily=false;
   }
   for (let k of allKeys){
     if (k.highlight && !(winner || level > 5)){
@@ -194,7 +178,8 @@ function keyPressed(){
   } else if (winner || level > 5){
     //game over
   } else if (keyCode == 13 && WORDS.indexOf(currentword.toLowerCase()) == -1) {
-    notWord = true;
+    // invalid word, clear guess
+    currentword='';
   } else if (keyCode == 13 && currentword.length == 5) {
     words[level] = new Word();
     level++;
